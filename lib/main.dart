@@ -1,42 +1,59 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        title: 'Cklass',
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        home: MyHomePage());
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key}) : super(key: key);
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
+class _MyHomePageState extends State<MyHomePage> {
+  List<String> images = [
+    "assets/images/zapato1.png",
+    "assets/images/zapato2.jpg",
+    "assets/images/zapato3.jpg",
+    "assets/images/zapato4.jpg",
+    "assets/images/zapato5.jpg",
+    "assets/images/zapato6.jpg",
+    "assets/images/zapato7.jpg",
+    "assets/images/zapato8.jpg",
+    "assets/images/zapato9.jpg",
+    "assets/images/zapato10.jpg",
+    "assets/images/zapato11.jpg",
+    "assets/images/zapato12.jpg",
+    "assets/images/zapato13.jpg",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+        appBar: AppBar(
+          title: const Text("Flutter GridView"),
         ),
-      ),
-    );
+        body: GridView.builder(
+          itemCount: images.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Image.asset(images[index], fit: BoxFit.cover);
+          },
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, mainAxisSpacing: 15, crossAxisSpacing: 10),
+          padding: const EdgeInsets.all(10),
+          shrinkWrap: true,
+        ));
   }
 }
